@@ -7,6 +7,8 @@ const App = () => {
   const [url, setUrl] = useState([])
   const [stockData, setStockData] = useState([])
 
+  const API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
+
   // Update interactive search bar using Alpha Vantage API
   useEffect(() => {
     fetchStockData()
@@ -19,7 +21,7 @@ const App = () => {
 
     // loadStockSymbol()
 
-  })
+  }, [url]) // Only update on URL change
 
   const handleChange = (e) => {
     setStockSearchSymbol(e.target.value)
@@ -27,7 +29,7 @@ const App = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setUrl(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockSearchSymbol}&apikey=demo`)
+    setUrl(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${stockSearchSymbol}&apikey=${API_KEY}`)
   }
 
   const fetchStockData = () => {
