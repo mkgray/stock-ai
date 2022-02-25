@@ -11,27 +11,12 @@ const App = () => {
 
   // Update interactive search bar using Alpha Vantage API
   useEffect(() => {
-    fetchStockData()
-    // // Put into functions for ease of managing control
-    // const loadStockSymbol = async () => {
-    //   const response = await axios.get('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=tesco&apikey=demo');
-
-    //   console.log("Response", response)
-    // }
-
-    // loadStockSymbol()
-
+     fetchStockData()
   }, [url]) // Only update on URL change
 
   const handleChange = (e) => {
-    //setStockSearchSymbol(e.target.value)
-    fetch('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${API_KEY}')
-    .then(result => result.json())
-    .then(data => console.log(data))
-    //.then(searchdata => setStockSearchSymbol({
-    //  searchData: searchdata["bestmatches"] }, () => console.log(searchdata)
-    //))
-    .catch(error => console.log(error));
+    // Update search bar
+    setStockSearchSymbol(e.target.value)
   }
 
   const handleSubmit = (e) => {
