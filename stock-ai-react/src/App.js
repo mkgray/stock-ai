@@ -24,7 +24,14 @@ const App = () => {
   }, [url]) // Only update on URL change
 
   const handleChange = (e) => {
-    setStockSearchSymbol(e.target.value)
+    //setStockSearchSymbol(e.target.value)
+    fetch('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${e.target.value}&apikey=${API_KEY}')
+    .then(result => result.json())
+    .then(data => console.log(data))
+    //.then(searchdata => setStockSearchSymbol({
+    //  searchData: searchdata["bestmatches"] }, () => console.log(searchdata)
+    //))
+    .catch(error => console.log(error));
   }
 
   const handleSubmit = (e) => {
